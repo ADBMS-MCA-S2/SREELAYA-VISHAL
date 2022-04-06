@@ -34,3 +34,4 @@ create table student
 emp_id int,
 exp int,
 salary float,
+level);
