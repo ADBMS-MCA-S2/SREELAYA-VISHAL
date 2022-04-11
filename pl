@@ -46,7 +46,7 @@ if (experience > 0 && experience<5)
      insert into employe(emp_id,experience,salary,levels) values(emp_id,experience,salary,levels);
     end if;
     if (exp >= 10)
-    then set levels = 'advan';
+    then set levels = 'Experienced';
     
     insert into employe(emp_id,experience,salary,levels) values(emp_id,experience,salary,levels);
     end if;
