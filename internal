@@ -1,0 +1,25 @@
+CREATE DATABASE company2;
+USE company2;
+CREATE TABLE EMPLOYEE(EMPNO VARCHAR(10) PRIMARY KEY NOT NULL, ENAME VARCHAR(30) NOT NULL, DEPTNO VARCHAR(30) NOT NULL, SALARY varchar(20) NOT NULL, hiredate DATE NOT NULL ,job VARCHAR(30) NOT NULL);
+INSERT INTO EMPLOYEE VALUES("E101","Amit",1, 45000 ,"2000-03-12","clerk");
+INSERT INTO EMPLOYEE VALUES("E109","sfe",12, 35000 ,"2000-03-12","clerk");
+INSERT INTO EMPLOYEE VALUES("E102","Amit",3, 70000 ,"2002-07-03","developer");
+INSERT INTO EMPLOYEE VALUES("E103","sunita",10, 120000 ,"2001-01-11","clerk");
+INSERT INTO EMPLOYEE VALUES("E105","sunita",30, 67000 ,"2001-08-01","developer");
+INSERT INTO EMPLOYEE VALUES("E1021","mahesh",10, 145000 ,"2003-09-20","testor");
+INSERT INTO EMPLOYEE VALUES("E1022","laya",30, 1450 ,"2003-09-20","pa");
+
+select * from employee;
+CREATE TABLE department(deptno VARCHAR(10)  PRIMARY KEY NOT NULL,dname varchar(20),loc varchar(20) );
+INSERT INTO department VALUES("1","cs","ernakulam");
+INSERT INTO department VALUES("10","mca", "trissur");
+INSERT INTO department VALUES("30","bca","aluva");
+INSERT INTO department VALUES("12","cs","ernakulam");
+INSERT INTO department VALUES("3","mca","trissur");
+INSERT INTO department VALUES("6","bca","aluva");
+select * from department;
+
+SELECT COUNT(EMPNO) FROM EMPLOYEE  WHERE job="clerk";
+SELECT  deptno, COUNT(EMPNO) FROM EMPLOYEE  WHERE job="clerk" GROUP BY deptno HAVING COUNT(EMPNO)=1;
+SELECT  AVG(SALARY) FROM EMPLOYEE where department=deptno;
+select  ename from employee where ename like "la%";
