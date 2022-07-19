@@ -1,0 +1,41 @@
+use exam
+switched to db exam
+> db.createCollection("stud")
+{ "ok" : 1 }
+>db.stud.insert({ "_id" : 1, "name" : "anjali", "place" : "kollam", "phone" : 8582639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 30, "external" : 45 }, "department" : "mca" })
+WriteResult({ "nInserted" : 1 })
+> db.stud.find()
+{ "_id" : 1, "name" : "anjali", "place" : "kollam", "phone" : 8582639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 30, "external" : 45 }, "department" : "mca" }
+> db.stud.insert({"_id":2,"name":"anuradha","place":"varkala","phone":9992639562,"vaccination_status":"Both vaccinated","rtpcr":"negative","lab_mark":{"internal":40,"external":48},"department":"civil"})
+WriteResult({ "nInserted" : 1 })
+> db.stud.insert({"_id":3,"name":"bismiya","place":"kollam","phone":8582639568,"vaccination_status":"not vaccinated","rtpcr":"positive","lab_mark":{"internal":50,"external":39},"department":"mca"})
+WriteResult({ "nInserted" : 1 })
+ db.stud.insert({"_id":4,"name":"vimal","place":"ernakulam","phone":9446639562,"vaccination_status":"First does only","rtpcr":"positive","lab_mark":{"internal":40,"external":42},"department":"civil"})
+WriteResult({ "nInserted" : 1 })
+ db.stud.insert({"_id":5,"name":"vivek","place":"kollam","phone":8582639777,"vaccination_status":"Both vaccinated","rtpcr":"negative","lab_mark":{"internal":50,"external":50},"department":"mca"})
+WriteResult({ "nInserted" : 1 })
+> db.stud.find()
+{ "_id" : 1, "name" : "anjali", "place" : "kollam", "phone" : 8582639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 30, "external" : 45 }, "department" : "mca" }
+{ "_id" : 2, "name" : "anuradha", "place" : "varkala", "phone" : 9992639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 40, "external" : 48 }, "department" : "civil" }
+{ "_id" : 3, "name" : "bismiya", "place" : "kollam", "phone" : 8582639568, "vaccination_status" : "not vaccinated", "rtpcr" : "positive", "lab_mark" : { "internal" : 50, "external" : 39 }, "department" : "mca" }
+{ "_id" : 4, "name" : "vimal", "place" : "ernakulam", "phone" : 9446639562, "vaccination_status" : "First does only", "rtpcr" : "positive", "lab_mark" : { "internal" : 40, "external" : 42 }, "department" : "civil" }
+{ "_id" : 5, "name" : "vivek", "place" : "kollam", "phone" : 8582639777, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 50, "external" : 50 }, "department" : "mca" }
+
+
+>db.stud.find({vaccination_status:"not vaccinated"},{name:1,_id:0}).count({name:1})
+1
+
+>  db.stud.find({department:"mca"},{name:1,_id:0,phone:1}).sort({"lab_mark.external":-1})
+{ "name" : "vivek", "phone" : 8582639777 }
+{ "name" : "anjali", "phone" : 8582639562 }
+{ "name" : "bismiya", "phone" : 8582639568 }
+
+> db.stud.update({_id:4},{$set:{vaccination_status:"Both vaccinated"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.stud.find()
+{ "_id" : 1, "name" : "anjali", "place" : "kollam", "phone" : 8582639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 30, "external" : 45 }, "department" : "mca" }
+{ "_id" : 2, "name" : "anuradha", "place" : "varkala", "phone" : 9992639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 40, "external" : 48 }, "department" : "civil" }
+{ "_id" : 3, "name" : "bismiya", "place" : "kollam", "phone" : 8582639568, "vaccination_status" : "not vaccinated", "rtpcr" : "positive", "lab_mark" : { "internal" : 50, "external" : 39 }, "department" : "mca" }
+{ "_id" : 4, "name" : "vimal", "place" : "ernakulam", "phone" : 9446639562, "vaccination_status" : "Both vaccinated", "rtpcr" : "positive", "lab_mark" : { "internal" : 40, "external" : 42 }, "department" : "civil" }
+{ "_id" : 5, "name" : "vivek", "place" : "kollam", "phone" : 8582639777, "vaccination_status" : "Both vaccinated", "rtpcr" : "negative", "lab_mark" : { "internal" : 50, "external" : 50 }, "department" : "mca" }
